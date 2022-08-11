@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
-import Search from './components/search/Search';
-import CurrentWeather from './components/current-weather/CurrentWeather';
-import Forecast from './components/forecast/Forecast';
-import { WEATHER_API_URL, WEATHER_API_KEY } from './api'
+import Search from '../search/Search';
+import CurrentWeather from '../current-weather/CurrentWeather';
+import Forecast from '../forecast/Forecast';
+import { WEATHER_API_URL, WEATHER_API_KEY } from '../../api'
 import { useState } from 'react';
 
 function App() {
@@ -25,17 +24,13 @@ function App() {
         setForcast({ city: searchData.label, ...forecastResponse })
       })
       .catch((err) => console.log(err))
-
   }
-
-  console.log(forecast);
-
 
   return (
     <div className="container">
       <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}
-      <Forecast />
+      {forecast && <Forecast data={forecast} />}
     </div>
   );
 }
